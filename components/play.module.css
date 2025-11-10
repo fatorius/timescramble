@@ -1,0 +1,22 @@
+@reference "tailwindcss";
+
+.playScreen {
+  @apply flex items-center gap-4 h-[510px];
+}
+
+.runInfo {
+  @apply h-full flex flex-col items-center justify-between w-[250px];
+}
+
+.gameScore {
+  @apply text-2xl italic text-[#272525];
+}
+
+.gameClock {
+  font-family: "Sixtyfour", sans-serif;
+  @apply text-[#272525] bg-[#bdbab4] text-2xl px-4 py-1 border-[#272525] border-2 rounded;
+}
+
+.giveUpButton {
+  @apply p-3 bg-[#bdbab4] border-[#272525] border-2 rounded m-4;
+}

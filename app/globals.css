@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+button {
+  cursor: pointer;
+}
+
+.chessground {
+  width: 600px;
+  height: 600px;
+}
