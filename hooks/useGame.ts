@@ -19,7 +19,7 @@ function useGame() {
   const [isPlayerWhite, setIsPlayerWhite] = React.useState(true);
   const ws = useWebsockets();
 
-  const { playerTime, setPlayerTime, setTimeRunning } = useTime(100);
+  const { playerTime, setPlayerTime, setTimeRunning } = useTime(150);
 
   const [isPromotionModalOpen, setIsPromotionModalOpen] = React.useState(false);
   const [promotionResolver, setPromotionResolver] = React.useState<
@@ -124,7 +124,7 @@ function useGame() {
                 setTimeRunning(false);
 
                 setPlayerTime((s) => {
-                  return s + 10;
+                  return s + 5;
                 });
 
                 chess.move({ from: orig, to: dest, promotion: promotedPiece });
@@ -149,7 +149,7 @@ function useGame() {
                     return s + 1;
                   });
                   setPlayerTime((s) => {
-                    return s + 50;
+                    return s + 20;
                   });
                 }
 
