@@ -13,13 +13,19 @@ interface Position {
   winning_side: number;
 }
 
-function useGame() {
+interface PropsFunctions {
+  onFinish: (score: number, reason: string) => void;
+}
+
+function useGame({ onFinish }: PropsFunctions) {
   const [gamesWon, setGamesWon] = React.useState(0);
   const [position, setPosition] = React.useState<Position | null>(null);
   const [isPlayerWhite, setIsPlayerWhite] = React.useState(true);
   const ws = useWebsockets();
 
-  const { playerTime, setPlayerTime, setTimeRunning } = useTime(150);
+  const { playerTime, setPlayerTime, setTimeRunning } = useTime(150, () => {
+    onFinish(gamesWon, "Your time is over");
+  });
 
   const [isPromotionModalOpen, setIsPromotionModalOpen] = React.useState(false);
   const [promotionResolver, setPromotionResolver] = React.useState<
@@ -93,11 +99,11 @@ function useGame() {
             });
 
             if (chess.isCheckmate()) {
-              alert("Você perdeu");
+              onFinish(gamesWon, "You got checkmated");
             }
 
             if (chess.isDraw()) {
-              alert("Empatou");
+              onFinish(gamesWon, "You drawn");
             }
 
             setTimeRunning(true);
@@ -141,7 +147,7 @@ function useGame() {
                 }
 
                 if (chess.isDraw()) {
-                  alert("Empatou");
+                  onFinish(gamesWon, "You drawn");
                 }
 
                 if (chess.isCheckmate()) {

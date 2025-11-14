@@ -1,0 +1,10 @@
+@reference "tailwindcss";
+
+.title {
+  font-family: "Sixtyfour", sans-serif;
+  @apply text-[64px] text-[#272525];
+}
+
+.subtitle {
+  @apply text-2xl italic text-[#272525];
+}

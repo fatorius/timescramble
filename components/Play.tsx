@@ -10,7 +10,11 @@ import formatTenthsToTime from "@/functions/time/formatTenthsToTime";
 import useGame from "@/hooks/useGame";
 import Image from "next/image";
 
-function Play() {
+interface PropsFunctions {
+  onFinish: (score: number, reason: string) => void;
+}
+
+function Play({ onFinish }: PropsFunctions) {
   const {
     gamesWon,
     position,
@@ -18,7 +22,7 @@ function Play() {
     playerTime,
     handlePromotionSelect,
     isPlayerWhite,
-  } = useGame();
+  } = useGame({ onFinish });
 
   return (
     <div className={style.playScreen}>
@@ -106,7 +110,12 @@ function Play() {
       <div className={style.runInfo}>
         <div>
           <div className={style.gameScore}>Games won: {gamesWon}</div>
-          <button className={style.giveUpButton}>
+          <button
+            onClick={() => {
+              onFinish(gamesWon, "You resigned");
+            }}
+            className={style.giveUpButton}
+          >
             <Image src="/images/flag.svg" width={15} height={15} alt="" />
           </button>
         </div>

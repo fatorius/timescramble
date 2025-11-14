@@ -2,14 +2,14 @@
 
 import React from "react";
 import style from "./style.module.css";
-import Play from "@/components/Play";
 import Image from "next/image";
+import Game from "@/components/Game";
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = React.useState(false);
 
   if (isPlaying) {
-    return <Play />;
+    return <Game />;
   }
 
   return (

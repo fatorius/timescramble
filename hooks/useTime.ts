@@ -1,13 +1,13 @@
 import React from "react";
 
-function useTime(initialTime: number) {
+function useTime(initialTime: number, onFinish: () => void) {
   const [playerTime, setPlayerTime] = React.useState(initialTime);
   const [timeRunning, setTimeRunning] = React.useState(false);
 
   React.useEffect(() => {
     if (playerTime <= 0) {
       setTimeRunning(false);
-      alert("Tempo esgotado");
+      onFinish();
     }
   }, [playerTime]);
 
